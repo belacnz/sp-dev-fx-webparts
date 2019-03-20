@@ -11,6 +11,7 @@ export default class FileUpload extends React.Component<IFileUploadProps, {}> {
   }
   public render(): React.ReactElement<IFileUploadProps> {
     let _context = this.props.context;
+    let _webUrl = this.props.webUrl;
     let _listName = this.props.listName;
     let _fileUploadTo=this.props.uploadFilesTo;
     let _queryStringParam = this.props.queryString;
@@ -20,18 +21,19 @@ export default class FileUpload extends React.Component<IFileUploadProps, {}> {
     let componentConfig = {
       iconFiletypes: this.props.fileTypes.split(','),
       showFiletypeIcon: true,
-      postUrl: _context.pageContext.web.absoluteUrl
+      postUrl: this.props.webUrl
     };
     let myDropzone;
     let eventHandlers = {
       // This one receives the dropzone object as the first parameter
       // and can be used to additional work with the dropzone.js
       // object
+  
       init: function(dz){       
        myDropzone=dz;
       },
       removedfile: function(file){
-        let web:Web=new Web(_context.pageContext.web.absoluteUrl);     
+        let web:Web=new Web(_webUrl);     
         if(_fileUploadTo=="DocumentLibrary"){
           web.lists.getById(_listName).rootFolder.files.getByName(file.name).delete().then(t=>{
             //add your code here if you want to do more after deleting the file
@@ -46,11 +48,11 @@ export default class FileUpload extends React.Component<IFileUploadProps, {}> {
       processing: function (file, xhr) {
         
         if(_fileUploadTo=="DocumentLibrary")
-          myDropzone.options.url = `${_context.pageContext.web.absoluteUrl}/_api/web/Lists/getById('${_parent.props.listName}')/rootfolder/files/add(overwrite=true,url='${file.name}')`;          
+          myDropzone.options.url = `${_webUrl}/_api/web/Lists/getById('${_parent.props.listName}')/rootfolder/files/add(overwrite=true,url='${file.name}')`;          
         else
         {          
           if(_itemId)
-            myDropzone.options.url = `${_context.pageContext.web.absoluteUrl}/_api/web/lists/getById('${_parent.props.listName}')/items(${_itemId})/AttachmentFiles/add(FileName='${file.name}')`;
+            myDropzone.options.url = `${_webUrl}/_api/web/lists/getById('${_parent.props.listName}')/items(${_itemId})/AttachmentFiles/add(FileName='${file.name}')`;
           else
             alert('Item not found or query string value is null!')
         }

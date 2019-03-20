@@ -8,4 +8,6 @@ export interface IFileUploadProps {
   fileTypes:string;
   queryString:string;
   uploadFilesTo:string;
+  siteUrl:string;
+  webUrl:string;
 }

@@ -1,16 +1,16 @@
 /* tslint:disable */
 require('./FileUpload.module.css');
 const styles = {
-  fileUpload: 'fileUpload_207465a2',
-  container: 'container_207465a2',
-  row: 'row_207465a2',
-  column: 'column_207465a2',
-  'ms-Grid': 'ms-Grid_207465a2',
-  title: 'title_207465a2',
-  subTitle: 'subTitle_207465a2',
-  description: 'description_207465a2',
-  button: 'button_207465a2',
-  label: 'label_207465a2',
+  fileUpload: 'fileUpload_c7ec3116',
+  container: 'container_c7ec3116',
+  row: 'row_c7ec3116',
+  column: 'column_c7ec3116',
+  'ms-Grid': 'ms-Grid_c7ec3116',
+  title: 'title_c7ec3116',
+  subTitle: 'subTitle_c7ec3116',
+  description: 'description_c7ec3116',
+  button: 'button_c7ec3116',
+  label: 'label_c7ec3116',
 };
 
 export default styles;

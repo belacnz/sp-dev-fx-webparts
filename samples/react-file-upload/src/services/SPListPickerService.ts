@@ -5,19 +5,20 @@ import { IWebPartContext } from '@microsoft/sp-webpart-base';
 import { ISPLists, IPropertyFieldListPickerHostProps } from '../propertyFields/listPicker/IPropertyFieldListPickerHost';
 import { PropertyFieldListPickerOrderBy } from '../propertyFields/listPicker/IPropertyFieldListPicker';
 import SPListPickerMockHttpClient from './SPListPickerMockService';
-
 /**
  * Service implementation to get list & list items from current SharePoint site
  */
 export default class SPListPickerService {
 
+ 
+  private webUrl: string;
   private context: IWebPartContext;
   private props: IPropertyFieldListPickerHostProps;
-
+  
   /**
    * Service constructor
    */
-  constructor(_props: IPropertyFieldListPickerHostProps, pageContext: IWebPartContext) {
+  public constructor(_props: IPropertyFieldListPickerHostProps, pageContext: IWebPartContext) { 
     this.props = _props;
     this.context = pageContext;
   }
@@ -32,7 +33,8 @@ export default class SPListPickerService {
     }
     else {
       // If the running environment is SharePoint, request the lists REST service
-      let queryUrl: string = `${this.context.pageContext.web.absoluteUrl}/_api/lists?$select=Title,id,BaseTemplate`;
+      let queryUrl: string = `${this.props.webUrl}/_api/lists?$select=Title,id,BaseTemplate`;
+      console.log(queryUrl)
       // Check if the orderBy property is provided
       if (this.props.orderBy !== null) {
         queryUrl += '&$orderby=';

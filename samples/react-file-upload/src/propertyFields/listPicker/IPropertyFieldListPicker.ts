@@ -12,6 +12,7 @@ export enum PropertyFieldListPickerOrderBy {
  * Public properties of the PropertyFieldListPicker custom field
  */
 export interface IPropertyFieldListPickerProps {
+  webUrl: string;
 
   /**
    * Property field label displayed on top
@@ -99,6 +100,7 @@ export interface IPropertyFieldListPickerPropsInternal extends IPropertyFieldLis
   includeHidden?: boolean;
   onPropertyChange(propertyPath: string, oldValue: any, newValue: any): void;
   properties: any;
+  webUrl: string;
   key: string;
   disabled?: boolean;
   onGetErrorMessage?: (value: string | string[]) => string | Promise<string>;

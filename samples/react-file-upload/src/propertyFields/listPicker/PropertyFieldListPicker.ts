@@ -30,7 +30,6 @@ class PropertyFieldListPickerBuilder implements IPropertyPaneField<IPropertyFiel
   private orderBy: PropertyFieldListPickerOrderBy;
   private multiSelect: boolean;
   private includeHidden: boolean;
-
   public onPropertyChange(propertyPath: string, oldValue: any, newValue: any): void { }
   private customProperties: any;
   private key: string;
@@ -39,7 +38,7 @@ class PropertyFieldListPickerBuilder implements IPropertyPaneField<IPropertyFiel
   private deferredValidationTime: number = 200;
   private renderWebPart: () => void;
   private disableReactivePropertyChanges: boolean = false;
-
+  private webUrl: string;
   /**
    * Constructor method
    */
@@ -61,6 +60,7 @@ class PropertyFieldListPickerBuilder implements IPropertyPaneField<IPropertyFiel
     this.customProperties = _properties.properties;
     this.key = _properties.key;
     this.onGetErrorMessage = _properties.onGetErrorMessage;
+    this.webUrl = _properties.webUrl
 
     if (_properties.disabled === true) {
       this.disabled = _properties.disabled;
@@ -90,7 +90,8 @@ class PropertyFieldListPickerBuilder implements IPropertyPaneField<IPropertyFiel
       key: this.key,
       disabled: this.disabled,
       onGetErrorMessage: this.onGetErrorMessage,
-      deferredValidationTime: this.deferredValidationTime
+      deferredValidationTime: this.deferredValidationTime,
+      webUrl: this.webUrl
     };
 
     // Check if the multi or single select component has to get loaded
@@ -143,7 +144,8 @@ export function PropertyFieldListPicker(targetProperty: string, properties: IPro
     key: properties.key,
     disabled: properties.disabled,
     onGetErrorMessage: properties.onGetErrorMessage,
-    deferredValidationTime: properties.deferredValidationTime
+    deferredValidationTime: properties.deferredValidationTime,
+    webUrl: properties.webUrl
   };
   //Calls the PropertyFieldListPicker builder object
   //This object will simulate a PropertyFieldCustom to manage his rendering process
